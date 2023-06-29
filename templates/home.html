@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <h1 class="mb-5"> Blogs </h1>
+
+    {% for blog in object_list %}
+    <a href="{% url 'blog-detail' blog.pk %}" class="text-decoration-none">
+      <div class="blog-container border p-3 mb-3">
+        <h4 class="text-dark font-weight-bold text-decoration-underline">{{blog.title}}</h4>
+        <p class="text-dark">{{blog.author.first_name}} {{blog.author.last_name}} - {{blog.creation_date}}</p>
+        <p class="text-dark">{{blog.body|slice:":20"}}</p>
+
+        {% if user.is_authenticated %}
+          {% if user.id == blog.author.id %}
+            <p>
+              <small><a href="{% url 'update-blog' blog.pk %}" class="btn btn-primary">Edit</a></small>
+              <small><a href="{% url 'delete-blog' blog.pk %}" class="btn btn-danger">Delete</a></small>
+            </p>
+          {% endif %}
+        {% endif %}
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <style>
+    .blog-container {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+{% endblock %}

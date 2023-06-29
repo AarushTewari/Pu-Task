@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+  <div class="login-container">
+    <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-primary">
+      Login with Google
+    </a>
+    <a href="{% url 'home' %}" class="btn btn-secondary " style="margin-left: 10px;">Back</a>
+  </div>
+
+  <style>
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin-top: -30px;
+    }
+
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      font-size: 16px;
+      text-decoration: none;
+      background-color: #4285F4;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #3367D6;
+    }
+
+    .google-icon {
+      font-size: 20px;
+      margin-right: 8px;
+    }
+  </style>
+{% endblock %}

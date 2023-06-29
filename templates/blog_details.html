@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{object.title}}{% endblock %}
+
+{% block content %}
+<h1> {{object.title}} </h1>
+<h5>By: {{object.author.first_name}} {{object.author.last_name}}</h5> 
+{% if user.is_authenticated %} 
+    {% if user.id == object.author.id %}
+        <a href="{% url 'update-blog' object.pk %}" >(Edit) <a href="{% url 'delete-blog' object.pk %}">(Delete)</a></a></small>
+    {% endif %}
+{% endif %}
+<small>{{object.creation_date}}
+<hr>
+<p>{{object.body}}</p>
+
+<a href="{% url 'home' %} " class="btn btn-secondary">Back</a>
+{% endblock %}
